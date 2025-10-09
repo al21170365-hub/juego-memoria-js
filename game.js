@@ -155,7 +155,7 @@ function continueStartNewGame(choice) {
 
     let div = document.querySelectorAll('.dificultad')
     div.forEach(dif => {
-        dif.innerHTML = ''
+        dif.remove()
     })
 
     cards = createCards()
