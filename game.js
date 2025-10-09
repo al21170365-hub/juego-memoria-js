@@ -101,7 +101,6 @@ function createModal() {
     p.textContent = 'Has completado el juego'
     let p2 = document.createElement('p')
     p2.id = 'final-moves' 
-    p2.textContent = ""
     let cerrar = document.createElement('button')
     cerrar.id = 'cerrar'
     cerrar.textContent = 'Cerrar'
@@ -363,17 +362,18 @@ function showVictory() {
     body.appendChild(victory)
 
     let h2 = document.getElementById('winer')
+    const p = document.getElementById('final-moves' )
     if(matchPairs > matchPairs2) {
         h2.textContent =  '🎉 ¡Felicidades! Jugador 1'
+        p.textContent = `Lo completaste en ${moves} movimientos`
     }else if(matchPairs2 > matchPairs) {
         h2.textContent =  '🎉 ¡Felicidades! Jugador 2'
+        p.textContent = `Lo completaste en ${moves2} movimientos`
     }else {
         h2.textContent =  '🎉 ¡Felicidades! ¡Fue un empate!'
     }
 
     const modal = document.getElementById('victory-modal')
-    const p = document.getElementById('final-moves' )
-    p.textContent = `Lo completaste en ${moves} movimientos`
 
     modal.classList.add('show')
 }
