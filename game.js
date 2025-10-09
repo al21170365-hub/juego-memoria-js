@@ -153,9 +153,7 @@ function continueStartNewGame(choice) {
         emojis = ['👍','😂','❤️','😍','😒','👌','☺️','😊']
     }
     let div = document.querySelectorAll('.dificultad')
-    div.forEach(card => {
-        card.style.display = 'none'
-    })
+    div.innerHTML = ''
     cards = createCards()
 
     shuffleCards(cards)
