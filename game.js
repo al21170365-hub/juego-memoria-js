@@ -75,11 +75,8 @@ function createButtons(container) {
 
     let button = document.createElement('button')
     button.textContent = '🔄 Reiniciar'
+    button.id = 'reiniciar'
     button.onclick = function() {
-        let dif = document.querySelector('.dificultad')
-        if(dif.innerHTML !== '') {
-            return
-        }
         const gameBoard = document.getElementById('game-board')
         gameBoard.innerHTML = ''
         const modal = document.getElementById('victory-modal')
@@ -139,12 +136,16 @@ function startNewGame() {
     canFlip = true
     jugadorRotator = true
 
+    let button = document.getElementById('reiniciar')
+    button.style.display = 'none'
     updateStats(1)
 
     dificultad()
 }
 
 function continueStartNewGame(choice) {
+    let button = document.getElementById('reiniciar')
+    button.style.display = 'block'
     if (choice === 1) {
         emojis = ['👍','😂']
     } else if (choice === 2) {
@@ -152,8 +153,12 @@ function continueStartNewGame(choice) {
     } else {
         emojis = ['👍','😂','❤️','😍','😒','👌','☺️','😊']
     }
+
     let div = document.querySelectorAll('.dificultad')
-    div.innerHTML = ''
+    div.forEach(dif => {
+        dif.innerHTML = ''
+    })
+
     cards = createCards()
 
     shuffleCards(cards)
