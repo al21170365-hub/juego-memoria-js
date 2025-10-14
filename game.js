@@ -11,6 +11,8 @@ let matchPairs2 = 0
 let moves2 = 0
 let canFlip = true
 let jugadorRotator = true
+let m = null
+let s = null
 
 
 function initGame() {
@@ -52,13 +54,26 @@ function createHeader(container) {
     pairs2.id = 'pairs2'
     pairs2.textContent = '0/8'
 
+    let tempoDiv = document.createElement('div')
+    tempoDiv.classList.add('tiempo')
+    tempoDiv.style.display = 'none'
+    let tiempoSpan = document.createElement('span')
+    tiempoSpan.textContent = 'Tiempo: '
+    let tiempo = document.createElement('span')
+    tiempo.id = 'temporizador'
+    tiempo.textContent = '0.00s'
+
+
     stats.appendChild(moves)
     stats.appendChild(pairs)
     stats2.appendChild(moves2)
     stats2.appendChild(pairs2)
+    tempoDiv.appendChild(tiempoSpan)
+    tempoDiv.appendChild(tiempo)
     gameHeader.appendChild(h1)
     gameHeader.appendChild(stats)
     gameHeader.appendChild(stats2)
+    gameHeader.appendChild(tempoDiv)
     container.appendChild(gameHeader)
 }
 
@@ -157,6 +172,25 @@ function continueStartNewGame(choice) {
     div.forEach(dif => {
         dif.remove()
     })
+
+    let temp = document.getElementById('temporizador')
+    let min = 0
+    let sec = 0
+    m = setInterval(() => {
+        temp.textContent = min+"."+sec+"s"
+        min++
+    }, 1000);
+     s = setInterval(() => {
+        temp.textContent = min+"."+sec+"s"
+        if (sec == 100) {
+            sec = 0
+        }
+        sec++
+    }, 10);
+    let temporizador = document.querySelector('.tiempo')
+    temporizador.style.display = 'flex'
+    temporizador.style.justefyContent = 'center'
+    temporizador.style.alignItems = 'center'
 
     cards = createCards()
 
