@@ -424,12 +424,35 @@ function showVictory() {
 
     const modal = document.getElementById('victory-modal')
 
+    let mov = parseInt(p.value)
+    let tem = parseFloat(`${min}.${sec}`)
+    let recMov = localStorage.getItem("Movimientos")
+    let recTemp = localStorage.getItem("Tiempo")
+
+    if(tem > recTemp) {
+        saveLocalStorage("Movimientos",mov)
+        saveLocalStorage("Tiempo", tem)
+    }
+
     modal.classList.add('show')
 }
 
 function closeModal() {
     const modal = document.getElementById('victory-modal')
     modal.classList.remove('show')
+}
+
+function saveLocalStorage(key,value) {
+    localStorage.setItem(key,value)
+}
+
+function getLocalStorage(key) {
+    return localStorage.getItem(key)
+}
+
+if(localStorage.key(0) === null) {
+    localStorage.setItem("Movimientos",0)
+    localStorage.setItem("Tiempo",0)
 }
 
 if(document.readyState === 'loading') {
