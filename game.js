@@ -13,6 +13,8 @@ let canFlip = true
 let jugadorRotator = true
 let m = null
 let s = null
+let min = 0
+let sec = 0
 
 
 function initGame() {
@@ -116,6 +118,8 @@ function createModal() {
     p.textContent = 'Has completado el juego'
     let p2 = document.createElement('p')
     p2.id = 'final-moves' 
+    let p3 = document.createElement('p')
+    p3.id = 'fonal-time'
     let cerrar = document.createElement('button')
     cerrar.id = 'cerrar'
     cerrar.textContent = 'Cerrar'
@@ -135,6 +139,7 @@ function createModal() {
     modalContent.appendChild(h2)
     modalContent.appendChild(p)
     modalContent.appendChild(p2)
+    modalContent.appendChild(p3)
     modalContent.appendChild(cerrar)
     modalContent.appendChild(jugar)
     modal.appendChild(modalContent)
@@ -149,6 +154,12 @@ function startNewGame() {
     flippedCards = []
     canFlip = true
     jugadorRotator = true
+    m = null
+    s = null
+    min = 0
+    sec = 0
+    const temp = document.querySelector('.tiempo')
+    temp.style.display = 'none'
 
     let button = document.getElementById('reiniciar')
     button.style.display = 'none'
@@ -174,14 +185,12 @@ function continueStartNewGame(choice) {
     })
 
     let temp = document.getElementById('temporizador')
-    let min = 0
-    let sec = 0
     m = setInterval(() => {
-        temp.textContent = min+"."+sec+"s"
+        temp.textContent = ` ${min}.${sec}s`
         min++
     }, 1000);
      s = setInterval(() => {
-        temp.textContent = min+"."+sec+"s"
+        temp.textContent = ` ${min}.${sec}s`
         if (sec == 100) {
             sec = 0
         }
@@ -189,7 +198,7 @@ function continueStartNewGame(choice) {
     }, 10);
     let temporizador = document.querySelector('.tiempo')
     temporizador.style.display = 'flex'
-    temporizador.style.justefyContent = 'center'
+    temporizador.style.justifyContent = 'center'
     temporizador.style.alignItems = 'center'
 
     cards = createCards()
@@ -395,6 +404,9 @@ function showVictory() {
     victory.autoplay = true;
     body.appendChild(victory)
 
+    clearInterval(m);
+    clearInterval(s);
+
     let h2 = document.getElementById('winer')
     const p = document.getElementById('final-moves' )
     if(matchPairs > matchPairs2) {
@@ -406,6 +418,9 @@ function showVictory() {
     }else {
         h2.textContent =  '🎉 ¡Felicidades! ¡Fue un empate!'
     }
+
+    let temp = document.getElementById('fonal-time')
+    temp.textContent = `Tiempo: ${min}.${sec}s`
 
     const modal = document.getElementById('victory-modal')
 
