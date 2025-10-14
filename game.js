@@ -1,4 +1,28 @@
+if(localStorage.key(0) === null) {
+    localStorage.setItem("Tiempo(facil)",0.0)
+    localStorage.setItem("Tiempo(medio)",0.0)
+    localStorage.setItem("Tiempo(dificil)",0.0)
+}
+
 let body = document.querySelector('body')
+
+let recordFacil = document.createElement('p')
+recordFacil.textContent = `Tiempo Record (Facil): ${localStorage.getItem('Tiempo(facil)')}`
+recordFacil.style.color = 'white'
+recordFacil.style.marginBottom = '20px'
+body.appendChild(recordFacil)
+
+let recordMedio = document.createElement('p')
+recordMedio.textContent = `Tiempo Record (Medio): ${localStorage.getItem('Tiempo(medio)')}`
+recordMedio.style.color = 'white'
+recordMedio.style.marginBottom = '20px'
+body.appendChild(recordMedio)
+
+let recordDificil = document.createElement('p')
+recordDificil.textContent = `Tiempo Record (Dificil): ${localStorage.getItem('Tiempo(dificil)')}`
+recordDificil.style.color = 'white'
+recordDificil.style.marginBottom = '20px'
+body.appendChild(recordDificil)
 
 //const emojis = ['👍','😂','❤️','😍','😒','👌','☺️','😊']
 let emojis = []
@@ -15,6 +39,7 @@ let m = null
 let s = null
 let min = 0
 let sec = 0
+let tipo = 0
 
 
 function initGame() {
@@ -158,6 +183,7 @@ function startNewGame() {
     s = null
     min = 0
     sec = 0
+    tipo = 0
     const temp = document.querySelector('.tiempo')
     temp.style.display = 'none'
 
@@ -222,16 +248,19 @@ function dificultad() {
     let facil = document.createElement('button')
     facil.textContent = 'Facil'
     facil.onclick = function() {
+        tipo = 1
         continueStartNewGame(1)
     }
     let medio = document.createElement('button')
     medio.textContent = 'Medio'
     medio.onclick = function() {
+        tipo = 2
         continueStartNewGame(2)
     }
     let dificil = document.createElement('button')
     dificil.textContent = 'Dificil'
     dificil.onclick = function() {
+        tipo = 3
         continueStartNewGame(3)
     }
 
@@ -424,14 +453,27 @@ function showVictory() {
 
     const modal = document.getElementById('victory-modal')
 
-    let mov = parseInt(p.value)
     let tem = parseFloat(`${min}.${sec}`)
-    let recMov = localStorage.getItem("Movimientos")
-    let recTemp = localStorage.getItem("Tiempo")
+    let recTemp = 0
 
-    if(tem > recTemp) {
-        saveLocalStorage("Movimientos",mov)
-        saveLocalStorage("Tiempo", tem)
+    if(tipo === 1) {
+        recTemp = parseFloat(localStorage.getItem("Tiempo(facil)"))
+        if(tem < recTemp || recTemp === 0) {
+            saveLocalStorage("Tiempo(facil)", tem)
+        }
+        recordFacil.textContent = `Tiempo Record (Facil): ${localStorage.getItem('Tiempo(facil)')}`
+    } else if(tipo === 2) {
+        recTemp = parseFloat(localStorage.getItem("Tiempo(medio)"))
+        if(tem < recTemp || recTemp === 0) {
+            saveLocalStorage("Tiempo(medio)", tem)
+        }
+        recordMedio.textContent = `Tiempo Record (Medio): ${localStorage.getItem('Tiempo(medio)')}`
+    } else if(tipo === 3) {
+        recTemp = parseFloat(localStorage.getItem("Tiempo(dificil)"))
+        if(tem < recTemp || recTemp === 0) {
+            saveLocalStorage("Tiempo(dificil)", tem)
+        }
+        recordDificil.textContent = `Tiempo Record (Dificil): ${localStorage.getItem('Tiempo(dificil)')}`
     }
 
     modal.classList.add('show')
@@ -444,15 +486,6 @@ function closeModal() {
 
 function saveLocalStorage(key,value) {
     localStorage.setItem(key,value)
-}
-
-function getLocalStorage(key) {
-    return localStorage.getItem(key)
-}
-
-if(localStorage.key(0) === null) {
-    localStorage.setItem("Movimientos",0)
-    localStorage.setItem("Tiempo",0)
 }
 
 if(document.readyState === 'loading') {
