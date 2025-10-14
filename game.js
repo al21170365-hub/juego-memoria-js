@@ -6,23 +6,31 @@ if(localStorage.key(0) === null) {
 
 let body = document.querySelector('body')
 
+let recDiv = document.createElement('div')
+recDiv.style.display = 'flex'
+recDiv.style.maxWidth = '1200px'
+recDiv.style.width = '100%'
+recDiv.style.justifyContent = 'space-around'
+
 let recordFacil = document.createElement('p')
 recordFacil.textContent = `Tiempo Record (Facil): ${localStorage.getItem('Tiempo(facil)')}`
 recordFacil.style.color = 'white'
 recordFacil.style.marginBottom = '20px'
-body.appendChild(recordFacil)
 
 let recordMedio = document.createElement('p')
 recordMedio.textContent = `Tiempo Record (Medio): ${localStorage.getItem('Tiempo(medio)')}`
 recordMedio.style.color = 'white'
 recordMedio.style.marginBottom = '20px'
-body.appendChild(recordMedio)
 
 let recordDificil = document.createElement('p')
 recordDificil.textContent = `Tiempo Record (Dificil): ${localStorage.getItem('Tiempo(dificil)')}`
 recordDificil.style.color = 'white'
 recordDificil.style.marginBottom = '20px'
-body.appendChild(recordDificil)
+
+recDiv.appendChild(recordFacil)
+recDiv.appendChild(recordMedio)
+recDiv.appendChild(recordDificil)
+body.appendChild(recDiv)
 
 //const emojis = ['👍','😂','❤️','😍','😒','👌','☺️','😊']
 let emojis = []
@@ -232,6 +240,8 @@ function continueStartNewGame(choice) {
     shuffleCards(cards)
 
     renderBoard()
+    let card = document.querySelectorAll('.card')
+    card.forEach(c => {c.style.fontSize = '2em'})
 }
 
 function dificultad() {
@@ -247,20 +257,27 @@ function dificultad() {
     p.textContent = 'Elija su dificultad'
     let facil = document.createElement('button')
     facil.textContent = 'Facil'
+    let board = document.getElementById('game-board')
     facil.onclick = function() {
         tipo = 1
+        board.style.gridTemplateRows = 'repeat(1, 1fr)'
+        board.style.gridTemplateColumns = 'repeat(4, 1fr)'
         continueStartNewGame(1)
     }
     let medio = document.createElement('button')
     medio.textContent = 'Medio'
     medio.onclick = function() {
         tipo = 2
+        board.style.gridTemplateRows = 'repeat(2, 1fr)'
+        board.style.gridTemplateColumns = 'repeat(5, 1fr)'
         continueStartNewGame(2)
     }
     let dificil = document.createElement('button')
     dificil.textContent = 'Dificil'
     dificil.onclick = function() {
         tipo = 3
+        board.style.gridTemplateRows = 'repeat(1, 1fr)'
+        board.style.gridTemplateColumns = 'repeat(4, 1fr)'
         continueStartNewGame(3)
     }
 
