@@ -13,17 +13,17 @@ recDiv.style.width = '100%'
 recDiv.style.justifyContent = 'space-around'
 
 let recordFacil = document.createElement('p')
-recordFacil.textContent = `Tiempo Record (Facil): ${localStorage.getItem('Tiempo(facil)')}`
+recordFacil.textContent = `Tiempo Record (Facil): ${localStorage.getItem('Tiempo(facil)')}s`
 recordFacil.style.color = 'white'
 recordFacil.style.marginBottom = '20px'
 
 let recordMedio = document.createElement('p')
-recordMedio.textContent = `Tiempo Record (Medio): ${localStorage.getItem('Tiempo(medio)')}`
+recordMedio.textContent = `Tiempo Record (Medio): ${localStorage.getItem('Tiempo(medio)')}s`
 recordMedio.style.color = 'white'
 recordMedio.style.marginBottom = '20px'
 
 let recordDificil = document.createElement('p')
-recordDificil.textContent = `Tiempo Record (Dificil): ${localStorage.getItem('Tiempo(dificil)')}`
+recordDificil.textContent = `Tiempo Record (Dificil): ${localStorage.getItem('Tiempo(dificil)')}s`
 recordDificil.style.color = 'white'
 recordDificil.style.marginBottom = '20px'
 
@@ -478,19 +478,19 @@ function showVictory() {
         if(tem < recTemp || recTemp === 0) {
             saveLocalStorage("Tiempo(facil)", tem)
         }
-        recordFacil.textContent = `Tiempo Record (Facil): ${localStorage.getItem('Tiempo(facil)')}`
+        recordFacil.textContent = `Tiempo Record (Facil): ${localStorage.getItem('Tiempo(facil)')}s`
     } else if(tipo === 2) {
         recTemp = parseFloat(localStorage.getItem("Tiempo(medio)"))
         if(tem < recTemp || recTemp === 0) {
             saveLocalStorage("Tiempo(medio)", tem)
         }
-        recordMedio.textContent = `Tiempo Record (Medio): ${localStorage.getItem('Tiempo(medio)')}`
+        recordMedio.textContent = `Tiempo Record (Medio): ${localStorage.getItem('Tiempo(medio)')}s`
     } else if(tipo === 3) {
         recTemp = parseFloat(localStorage.getItem("Tiempo(dificil)"))
         if(tem < recTemp || recTemp === 0) {
             saveLocalStorage("Tiempo(dificil)", tem)
         }
-        recordDificil.textContent = `Tiempo Record (Dificil): ${localStorage.getItem('Tiempo(dificil)')}`
+        recordDificil.textContent = `Tiempo Record (Dificil): ${localStorage.getItem('Tiempo(dificil)')}s`
     }
 
     modal.classList.add('show')
