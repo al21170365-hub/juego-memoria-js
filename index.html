@@ -1,18 +1,193 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Proyectos</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Encabezado */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 30px 0;
+            color: white;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Tarjetas de proyectos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .project-image {
+            height: 180px;
+            background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .project-description {
+            color: #7f8c8d;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .project-link {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .project-link:hover {
+            background: #2980b9;
+        }
+        
+        /* Pie de página */
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: white;
+            padding: 20px 0;
+            opacity: 0.8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Mis Proyectos</h1>
-    <nav>
-        <ul>
-            <li><a href="./Proyecto/proyecto_juego_memoria/">Juego memoria 1</a></li>
-            <li><a href="./Proyecto/1/">Proyecto 1</a></li>
-            <li><a href="./Proyecto/2/">Proyecto 2</a></li>
-            <li><a href="./Proyecto/3/">Proyecto 3</a></li>
-            <li><a href="./Proyecto/4/">Proyecto 4</a></li>
-        </ul>
-    </nav>
+    <div class="container">
+        <header>
+            <h1>Mis Proyectos</h1>
+            <p class="subtitle">Una colección de mis trabajos y desarrollos más recientes</p>
+        </header>
+        
+        <main>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">🧠</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Juego de Memoria</h3>
+                        <p class="project-description"></p>
+                        <a href="./Proyecto/proyecto_juego_memoria/" class="project-link">Ver Proyecto</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">🚀</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Proyecto 1</h3>
+                        <p class="project-description"></p>
+                        <a href="./Proyecto/1/" class="project-link">Ver Proyecto</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">🎨</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Proyecto 2</h3>
+                        <p class="project-description"></p>
+                        <a href="./Proyecto/2/" class="project-link">Ver Proyecto</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">📊</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Proyecto 3</h3>
+                        <p class="project-description"></p>
+                        <a href="./Proyecto/3/" class="project-link">Ver Proyecto</a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">🌐</div>
+                    <div class="project-content">
+                        <h3 class="project-title">Proyecto 4</h3>
+                        <p class="project-description"></p>
+                        <a href="./Proyecto/4/" class="project-link">Ver Proyecto</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>&copy; 2023 - Todos los derechos reservados</p>
+        </footer>
+    </div>
 </body>
 </html>
