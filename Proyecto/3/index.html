@@ -168,9 +168,11 @@
                 .then(respuesta => {
                     if(!respuesta.ok) {
                         if(respuesta.status === 404) {
-                            throw new Error(`Pais no encontrado`)
+                            resultadoDiv.innerHTML = '<p class="loading"> ❌ Pais no encontrado.</p>';
+                            return
                         } else {
-                            throw new Error(`Error al cargar los datos`)
+                            resultadoDiv.innerHTML = '<p class="loading"> ❌ Error al cargar los datos</p>';
+                            return
                         }
                     }
                     return respuesta.json()
@@ -183,7 +185,10 @@
                     }
                     mostrarPaises(p)}
                 )
-                .catch(error => usuariosDiv.innerHTML = `<p> ❌ Error de red<p>`)
+                .catch(error => {
+                    usuariosDiv.innerHTML = `<p> ❌ Error de red<p>`
+                    return
+                })
         }
 
         function mostrarPaises(paises) {

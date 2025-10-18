@@ -145,10 +145,12 @@
             fetch(url)
                 .then(respuesta => {
                     if(!respuesta.ok) {
-                        if(respuesta.status === 404) {
-                            throw new Error(`Pokemon no existe`)
+                        if(respuesta.status == 404) {
+                            resultadoDiv.innerHTML = `<p> ❌ Pokémon no encontrado. Intenta con otro nombre. <p>`
+                            return
                         } else {
                             throw new Error(`HTTP error! status: ${respuesta.status}`)
+                            resultadoDiv.innerHTML = `<p> ❌ HTTP error! status: ${respuesta.status} <p>`
                         }
                     }
                     return respuesta.json()
