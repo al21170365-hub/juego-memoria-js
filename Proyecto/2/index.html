@@ -149,8 +149,8 @@
                             resultadoDiv.innerHTML = `<p> ❌ Pokémon no encontrado. Intenta con otro nombre. <p>`
                             return
                         } else {
-                            throw new Error(`HTTP error! status: ${respuesta.status}`)
                             resultadoDiv.innerHTML = `<p> ❌ HTTP error! status: ${respuesta.status} <p>`
+                            return
                         }
                     }
                     return respuesta.json()
