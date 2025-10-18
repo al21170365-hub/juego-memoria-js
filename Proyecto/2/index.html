@@ -141,25 +141,30 @@
             // 5. Capturar errores
 
 
-            const url = `https://pokeapi.co/api/v2/pokemon/${nombre}`
-            fetch(url)
-                .then(respuesta => {
-                    if(!respuesta.ok) {
-                        if(respuesta.status == 404) {
-                            resultadoDiv.innerHTML = `<p> ❌ Pokémon no encontrado. Intenta con otro nombre. <p>`
-                            return
-                        } else {
-                            resultadoDiv.innerHTML = `<p> ❌ HTTP error! status: ${respuesta.status} <p>`
-                            return
-                        }
+            const url = `https://pokeapi.co/api/v2/pokemon/${nombre}`;
+        fetch(url)
+            .then(respuesta => {
+                if(!respuesta.ok) {
+                    if(respuesta.status === 404) {
+                        resultadoDiv.innerHTML = `<p>❌ Pokémon no encontrado. Intenta con otro nombre.</p>`;
+                        throw new Error('Pokémon no encontrado');
+                    } else {
+                        resultadoDiv.innerHTML = `<p>❌ HTTP error! status: ${respuesta.status}</p>`;
+                        throw new Error(`HTTP error: ${respuesta.status}`);
                     }
-                    return respuesta.json()
-                })
-                .then(pokemon => {
-                    console.log(pokemon)
-                    mostrarPokemon(pokemon)}
-                )
-                .catch(error => usuariosDiv.innerHTML = `<p> ❌ Error: ${error.message}<p>`)
+                }
+                return respuesta.json();
+            })
+            .then(pokemon => {
+                console.log(pokemon);
+                mostrarPokemon(pokemon);
+            })
+            .catch(error => {
+        // Solo mostrar error si no fue un error que ya manejamos
+        if (!error.message.includes('Pokémon no encontrado') && !error.message.includes('HTTP error')) {
+            resultadoDiv.innerHTML = `<p>❌ Error: ${error.message}</p>`;
+        }
+    });
         }
 
         function mostrarPokemon(pokemon) {
