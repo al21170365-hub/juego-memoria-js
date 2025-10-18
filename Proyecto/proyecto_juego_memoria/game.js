@@ -510,3 +510,36 @@ if(document.readyState === 'loading') {
 }else {
     initGame()
 }
+
+// Crear el elemento nav
+const nav = document.createElement('nav');
+
+// Crear el elemento ul
+const ul = document.createElement('ul');
+
+// Array con los datos de los proyectos
+const proyectos = [
+    { nombre: "Juego memoria 1", ruta: "./" },
+    { nombre: "Proyecto 1", ruta: "../1/" },
+    { nombre: "Proyecto 2", ruta: "../2/" },
+    { nombre: "Proyecto 3", ruta: "../3/" },
+    { nombre: "Proyecto 4", ruta: "../4/" }
+];
+
+// Crear los elementos li y a para cada proyecto
+proyectos.forEach(proyecto => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    
+    a.href = proyecto.ruta;
+    a.textContent = proyecto.nombre;
+    
+    li.appendChild(a);
+    ul.appendChild(li);
+});
+
+// Agregar ul al nav
+nav.appendChild(ul);
+
+// Agregar el nav al cuerpo del documento
+document.body.appendChild(nav);
