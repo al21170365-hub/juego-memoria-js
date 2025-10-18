@@ -166,31 +166,31 @@
 
             fetch(url)
                 .then(respuesta => {
-                    if(!respuesta.ok) {
-                        if(respuesta.status === 404) {
-                            resultadoDiv.innerHTML = '<p class="loading"> ❌ Pais no encontrado.</p>';
-                            return
+                    if (!respuesta.ok) {
+                        if (respuesta.status === 404) {
+                            resultadoDiv.innerHTML = '<p class="loading">❌ País no encontrado.</p>';
                         } else {
-                            resultadoDiv.innerHTML = '<p class="loading"> ❌ Error al cargar los datos</p>';
-                            return
+                            resultadoDiv.innerHTML = '<p class="loading">❌ Error al cargar los datos</p>';
                         }
+                        throw new Error(`HTTP error! status: ${respuesta.status}`);
                     }
-                    return respuesta.json()
+                    return respuesta.json();
                 })
                 .then(pais => {
-                    console.log(pais)
-                    let p = null
-                    if (pais.length > 12) {
-                        p = pais.slice(0, 12)
-                    }else {
-                        p = pais
-                    }
-                    mostrarPaises(p)}
-                )
-                .catch(error => {
-                    resultadoDiv.innerHTML = `<p> ❌ Error de red<p>`
-                    return
+                    console.log(pais);
+                    
+                    // Limitar a 12 países si hay más
+                    const paisesLimitados = pais.length > 12 ? pais.slice(0, 12) : pais;
+                    
+                    mostrarPaises(paisesLimitados);
                 })
+                .catch(error => {
+                    // Solo mostrar error de red si no es un error HTTP que ya manejamos
+                    if (!error.message.includes('HTTP error')) {
+                        resultadoDiv.innerHTML = '<p>❌ Error de red</p>';
+                    }
+                    console.error('Error:', error);
+                });
         }
 
         function mostrarPaises(paises) {
