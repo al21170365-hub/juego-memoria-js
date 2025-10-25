@@ -170,9 +170,9 @@
                 <option value="">Todas</option>
                 <option value="1">Sombreros</option>
                 <option value="2">Espacio</option>
-                <option value="4">Cajas</option>
-                <option value="5">Ropa</option>
-                <option value="15">Gafas</option>
+                <option value="5">Cajas</option>
+                <option value="15">Ropa</option>
+                <option value="4">Gafas</option>
             </select>
             
             <button id="cargarBtn">🎲 Cargar Gatitos</button>
@@ -235,15 +235,6 @@
                 url += `?${params.toString()}`
             }
             
-            //if(cantidad) {
-            //    url += `?limit=${cantidad}`
-            //}
-            //if (categoria && !cantidad) {
-            //    url += `?category_ids=${categoria}` 
-            //}else if(categoria && cantidad) {
-            //    url += `&category_ids=${categoria}` 
-            //}
-            
             try {
                 // Paso 4: Hacer fetch con await
                 // Paso 5: Verificar respuesta.ok
@@ -256,8 +247,9 @@
                     throw new Error(`Error: ${results.status}`)
                 }
                 const datas = await results.json()
-                console.log(datas)
-                mostrarGatos(datas)
+                const rdatas = datas.slice(0,cantidad)
+                console.log(rdatas)
+                mostrarGatos(rdatas)
 
                 
             } catch (error) {
