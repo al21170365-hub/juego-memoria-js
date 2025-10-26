@@ -213,6 +213,15 @@
             // Paso 1: Obtener valores
             const cantidad = cantidadInput.value;
             const categoria = categoriaSelect.value;
+
+            if (categoria !== "" && categoria !== "1" && categoria !== "2" && categoria !== "4" && categoria !== "5" && categoria !== "15") {
+                galeriaDiv.innerHTML = `
+                    <div class="error">
+                        <h3>😿 Error</h3>
+                        <p>Categoria co encontrada</p>
+                    </div>
+                `;
+            }
             
             // Paso 2: Mostrar loading
             galeriaDiv.innerHTML = `
@@ -221,6 +230,8 @@
                     <p>Cargando gatitos adorables...</p>
                 </div>
             `;
+
+
             
             // Paso 3: Construir URL
             // Base: https://api.thecatapi.com/v1/images/search
